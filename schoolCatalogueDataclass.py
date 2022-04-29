@@ -1,4 +1,4 @@
-"""Codecademy School Catalog Project in Dataclass syntax with enum."""
+"""Codecademy School Catalog Project in Dataclass syntax with Enum."""
 
 from dataclasses import dataclass, field
 from enum import Enum
@@ -62,19 +62,19 @@ def main():
     mySchool = School(
         school_name="Codecademy Middle",
         school_level=SchoolLevels.MIDDLE,
-        number_of_students=100
+        number_of_students=100,
     )
     myPrimary = PrimarySchool(
         school_name="Codecademy Primary",
         school_level=SchoolLevels.PRIMARY,
         number_of_students=300,
-        pickup_policy="Pickup Allowed"
+        pickup_policy="Pickup Allowed",
     )
     myHighSchool = HighSchool(
         school_name="Codecademy High",
         school_level=SchoolLevels.HIGH,
         number_of_students=500,
-        sports_teams=["Tennis", "Basketball"]
+        sports_teams=["Tennis", "Basketball"],
     )
 
     myHighSchool.addTeam("Hockey")
