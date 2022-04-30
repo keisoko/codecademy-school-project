@@ -7,9 +7,9 @@ from enum import Enum
 class SchoolLevels(Enum):
     """School Levels"""
 
-    MIDDLE = "middle school"
-    PRIMARY = "primary school"
-    HIGH = "highschool"
+    MIDDLE = "middle"
+    PRIMARY = "primary"
+    HIGH = "high"
 
 
 @dataclass(kw_only=True)
@@ -24,7 +24,7 @@ class School:
     @property
     def school_info(self) -> str:
         """Returns general School Info"""
-        return f"A {self.school_level.value} named {self.school_name!r} with {self.number_of_students} students."
+        return f"A {self.school_level.value} school named {self.school_name!r} with {self.number_of_students} students."
 
 
 @dataclass(kw_only=True)
