@@ -12,11 +12,10 @@ class SchoolLevels(Enum):
     HIGH = "high"
 
 
-@dataclass(kw_only=True)
+@dataclass(slots=True)
 class School:
     """Parent class representing the School"""
 
-    __slots__ = ("school_name", "school_level", "number_of_students")
     school_name: str
     school_level: SchoolLevels
     number_of_students: int
@@ -27,7 +26,7 @@ class School:
         return f"A {self.school_level.value} school named {self.school_name!r} with {self.number_of_students} students."
 
 
-@dataclass(kw_only=True)
+@dataclass
 class PrimarySchool(School):
     """Primary School class"""
 
@@ -40,7 +39,7 @@ class PrimarySchool(School):
         return f"{super().school_info} The pickup policy is: {self.pickup_policy}"
 
 
-@dataclass(kw_only=True)
+@dataclass
 class HighSchool(School):
     """High School class"""
 
