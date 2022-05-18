@@ -55,8 +55,8 @@ class HighSchool(School):
         self.sports_teams.append(team)
 
 
-def main():
-    """Main program"""
+class InstancesHolder:
+    """Holds the class instances"""
 
     mySchool = School(
         school_name="Codecademy Middle",
@@ -76,9 +76,17 @@ def main():
         sports_teams=["Tennis", "Basketball"],
     )
 
-    myHighSchool.addTeam("Hockey")
 
-    schools = [mySchool, myPrimary, myHighSchool]
+def main():
+    """Main program"""
+
+    InstancesHolder.myHighSchool.addTeam("Hockey")
+
+    schools = [
+        InstancesHolder.mySchool,
+        InstancesHolder.myPrimary,
+        InstancesHolder.myHighSchool,
+    ]
 
     for school in schools:
         print(school.school_info)
