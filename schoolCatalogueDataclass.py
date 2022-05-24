@@ -1,5 +1,6 @@
 """Codecademy School Catalog Project in Dataclass syntax with Enum."""
 
+import typing
 from dataclasses import dataclass, field
 from enum import Enum
 
@@ -19,6 +20,7 @@ class School:
     school_name: str
     school_level: SchoolLevels
     number_of_students: int
+    pickup_policy: typing.Optional[str] = None
 
     @property
     def school_info(self) -> str:
@@ -27,11 +29,18 @@ class School:
 
 
 @dataclass
+class MiddleSchool(School):
+    """Class representing the Middle School"""
+
+    @property
+    def school_info(self) -> str:
+        """Adds Pickup Policy information"""
+        return f"{super().school_info} The pickup policy is: {self.pickup_policy}"
+
+
+@dataclass
 class PrimarySchool(School):
     """Primary School class"""
-
-    __slots__ = "pickup_policy"
-    pickup_policy: str
 
     @property
     def school_info(self) -> str:
@@ -58,10 +67,11 @@ class HighSchool(School):
 class InstancesHolder:
     """Holds the class instances"""
 
-    mySchool = School(
+    mySchool = MiddleSchool(
         school_name="Codecademy Middle",
         school_level=SchoolLevels.MIDDLE,
         number_of_students=100,
+        pickup_policy="Pickup by parent or guardian",
     )
     myPrimary = PrimarySchool(
         school_name="Codecademy Primary",
@@ -80,13 +90,13 @@ class InstancesHolder:
 def main():
     """Main program"""
 
-    InstancesHolder.myHighSchool.addTeam("Hockey")
+    mySchool = InstancesHolder.mySchool
+    myPrimary = InstancesHolder.myPrimary
+    myHighSchool = InstancesHolder.myHighSchool
 
-    schools = [
-        InstancesHolder.mySchool,
-        InstancesHolder.myPrimary,
-        InstancesHolder.myHighSchool,
-    ]
+    myHighSchool.addTeam("Hockey")
+
+    schools = [mySchool, myPrimary, myHighSchool]
 
     for school in schools:
         print(school.school_info)
