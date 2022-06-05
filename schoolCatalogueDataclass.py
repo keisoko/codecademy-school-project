@@ -1,6 +1,5 @@
 """Codecademy School Catalog Project in Dataclass syntax with Enum."""
 
-import typing
 from dataclasses import dataclass, field
 from enum import Enum
 
@@ -20,7 +19,6 @@ class School:
     school_name: str
     school_level: SchoolLevels
     number_of_students: int
-    pickup_policy: typing.Optional[str] = None
 
     @property
     def school_info(self) -> str:
@@ -29,23 +27,27 @@ class School:
 
 
 @dataclass
-class MiddleSchool(School):
-    """Class representing the Middle School"""
-
-    @property
-    def school_info(self) -> str:
-        """Adds Pickup Policy information"""
-        return f"{super().school_info} The pickup policy is: {self.pickup_policy}"
-
-
-@dataclass
 class PrimarySchool(School):
     """Primary School class"""
 
+    pickup_method: str
+
     @property
     def school_info(self) -> str:
         """Adds Pickup Policy information"""
-        return f"{super().school_info} The pickup policy is: {self.pickup_policy}"
+        return f"{super().school_info} The pickup method is: {self.pickup_method!r}"
+
+
+@dataclass
+class MiddleSchool(School):
+    """Class representing the Middle School"""
+
+    pickup_policy: str
+
+    @property
+    def school_info(self) -> str:
+        """Adds Pickup Policy information"""
+        return f"{super().school_info} The pickup policy is: {self.pickup_policy!r}"
 
 
 @dataclass
@@ -67,19 +69,19 @@ class HighSchool(School):
 class InstancesHolder:
     """Holds the class instances"""
 
-    mySchool = MiddleSchool(
+    my_primary = PrimarySchool(
+        school_name="Codecademy Primary",
+        school_level=SchoolLevels.PRIMARY,
+        number_of_students=300,
+        pickup_method="Students ride on the bus",
+    )
+    my_middle_school = MiddleSchool(
         school_name="Codecademy Middle",
         school_level=SchoolLevels.MIDDLE,
         number_of_students=100,
         pickup_policy="Pickup by parent or guardian",
     )
-    myPrimary = PrimarySchool(
-        school_name="Codecademy Primary",
-        school_level=SchoolLevels.PRIMARY,
-        number_of_students=300,
-        pickup_policy="Pickup Allowed",
-    )
-    myHighSchool = HighSchool(
+    my_high_school = HighSchool(
         school_name="Codecademy High",
         school_level=SchoolLevels.HIGH,
         number_of_students=500,
@@ -90,13 +92,13 @@ class InstancesHolder:
 def main():
     """Main program"""
 
-    mySchool = InstancesHolder.mySchool
-    myPrimary = InstancesHolder.myPrimary
-    myHighSchool = InstancesHolder.myHighSchool
+    my_primary = InstancesHolder.my_primary
+    my_middle_school = InstancesHolder.my_middle_school
+    my_high_school = InstancesHolder.my_high_school
 
-    myHighSchool.addTeam("Hockey")
+    my_high_school.addTeam("Hockey")
 
-    schools = [mySchool, myPrimary, myHighSchool]
+    schools = [my_primary, my_middle_school, my_high_school]
 
     for school in schools:
         print(school.school_info)
