@@ -66,35 +66,28 @@ class HighSchool(School):
         self.sports_teams.append(team)
 
 
-class InstancesHolder:
-    """Holds the class instances"""
-
-    my_primary = PrimarySchool(
-        school_name="Codecademy Primary",
-        school_level=SchoolLevels.PRIMARY,
-        number_of_students=300,
-        pickup_method="Students ride on the bus",
-    )
-    my_middle_school = MiddleSchool(
-        school_name="Codecademy Middle",
-        school_level=SchoolLevels.MIDDLE,
-        number_of_students=100,
-        pickup_policy="Pickup by parent or guardian",
-    )
-    my_high_school = HighSchool(
-        school_name="Codecademy High",
-        school_level=SchoolLevels.HIGH,
-        number_of_students=500,
-        sports_teams=["Tennis", "Basketball"],
-    )
+my_primary = PrimarySchool(
+    school_name="Codecademy Primary",
+    school_level=SchoolLevels.PRIMARY,
+    number_of_students=300,
+    pickup_method="Students ride on the bus",
+)
+my_middle_school = MiddleSchool(
+    school_name="Codecademy Middle",
+    school_level=SchoolLevels.MIDDLE,
+    number_of_students=100,
+    pickup_policy="Pickup by parent or guardian",
+)
+my_high_school = HighSchool(
+    school_name="Codecademy High",
+    school_level=SchoolLevels.HIGH,
+    number_of_students=500,
+    sports_teams=["Tennis", "Basketball"],
+)
 
 
 def main():
     """Main program"""
-
-    my_primary = InstancesHolder.my_primary
-    my_middle_school = InstancesHolder.my_middle_school
-    my_high_school = InstancesHolder.my_high_school
 
     my_high_school.addTeam("Hockey")
 
